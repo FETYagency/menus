@@ -1,0 +1,446 @@
+@import url(reset.css);
+@import url(vars.css);
+@font-face {
+    font-family: "myFont";
+    src: url(../font/Epilogue-VariableFont_wght.ttf);
+}
+
+body{
+    height: 100vh;
+    background-color: var(--Almost-White);
+    font-family: "myFont";
+
+    display: grid;
+    place-content: start center;
+}
+
+img{
+    max-width: 100%;
+}
+
+a,[for]{
+    display: inline-block;
+    text-decoration: none;
+    color: var(--Medium-Gray);
+
+}
+
+a:hover{
+    color: var(--Almost-black);
+}
+
+.wrapper{
+    max-width: 1600px;
+    padding-block-end: 2rem;
+}
+
+header{
+
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+
+    padding-inline: 2rem;
+    padding-block: 1rem 2rem;
+    background-color: var(--Almost-White);
+}
+
+
+/* dorpdown's codes */
+.check, .humberger{
+    display: none;
+}
+
+
+[type="checkbox"]:not(.check):hover~[for]{
+    color: var(--Almost-black);
+}
+
+
+.relative__dropdown{
+    position: relative;
+}
+[type="checkbox"]:not(.check){
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 999;
+}
+[type="checkbox"]:not(.check)~.down{    
+    display: none;
+}
+[type="checkbox"]:not(.check)~.up{    
+    display: inline-block;
+    transition: transform .3s ease;
+}
+[type="checkbox"]:not(.check):checked~.up{    
+    transform: rotate(180deg);
+}
+
+
+
+[type="checkbox"]:not(.check):checked~.dropdown{
+    position: absolute;
+    opacity: 1;
+    background-color: aliceblue;
+    transform: translateY(0px);
+    pointer-events: all;
+}
+.dropdown{
+    transform: translateY(-10px);
+    position: absolute;
+    top: 200%;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    width: max-content;
+    background-color: var(--Almost-White);
+    border-radius: 1rem;
+    box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.184);
+
+
+
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    gap: .8rem;
+
+    transition: all .3s ease;
+}
+
+/* FD === 'first dropdown' just to avoid overlap AND HAVING SAME ICONS   */
+
+.FD>a:first-child::before{
+    content: url(../images/icon-todo.svg);
+}
+
+.FD>a::before{
+    content: url(../images/icon-calendar.svg);
+    padding-inline-end: .8rem;
+}
+.FD>a:nth-child(3)::before{
+    content: url(../images/icon-reminders.svg);
+}
+.FD>a:last-child::before{
+    content: url(../images/icon-planning.svg);
+}
+.FD{
+    left: auto;
+    right: 0;
+}
+/* end of the drop down */
+
+
+
+.logo{
+    flex: 0 1 content;
+}
+.menu{
+    flex: 1 1 auto;
+}
+nav{
+
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+.btns{
+    width: fit-content;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    gap: 2rem;
+    margin-inline-start: auto;
+}
+.btns>.header__btns:last-child{
+    width: fit-content;
+    text-align: center;
+}
+.header__btns:not(.end__btn){
+    border: 2px solid currentColor;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    border-radius: 1rem;
+}
+
+.content{
+    display: flex;
+    padding-inline: 2rem;
+
+}
+.content>*{
+    flex: 1;
+}
+.left{
+    display: flex;
+    flex-flow: column;
+    padding-inline-start: 5vw;
+    justify-content: end;
+    gap: 5rem;
+
+
+    /* border: 1px solid red; */
+}
+.left>article{
+    display: flex;
+    flex-flow: column;
+    gap: 1.5rem;
+    align-items: start;
+}
+.left__header{
+    font-size: 4.6rem;
+    line-height: 5rem;
+    font-weight: 800;
+}
+.left__body{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--Medium-Gray);
+
+    max-width: 500px;
+}
+.left__btn{
+    font-weight: 800;
+    color: white;
+    background-color: var(--Almost-Black);
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    border-radius: 1rem;
+    transition: all .3s ease;
+}
+.left__btn:hover{
+    font-weight: 800;
+    border: 1px black solid;
+    color: black;
+    background-color: var(--Almost-White);
+}
+
+.right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero>img{
+    width: min(480px, 100%);
+}
+
+
+@media
+(max-width:1000px){
+
+    .wrapper{
+        max-width: 400px;
+        min-height: 100vh;
+        padding-block: 3rem;
+        overflow: hidden;
+    }
+
+    .content{
+        flex-flow: column;
+
+        padding: 0;
+        text-align: center;
+    }
+    .left{
+        order: 2;
+        gap: 3rem;
+        padding: 0;
+        padding-block-start: 3rem;
+    }
+    .left>article{
+        align-items: center;
+    }
+    .left__header{
+        font-size: clamp(1rem, 8vw, 1.5rem);
+        line-height:  clamp(1rem, 8vw, 1.5rem);
+    }
+    .right{
+        order: 1;
+    }
+    .clients{
+        display: flex;
+        align-items: baseline;
+        gap: 2rem;
+    }
+    .clients>img{
+        width: 100%;
+    }
+
+
+
+    /* menu */
+    header{
+        padding: 0;
+        padding-block: 0rem 3rem ;
+        justify-content: space-between;
+    }
+
+    .menu{
+        flex: 0 0 auto;
+        position: relative;
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* border: 1px red solid; */
+    }
+    .check{
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        z-index: 3;
+    } 
+    .check{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .bar{
+        width: 30px;
+        height: 4px;
+        display: block;
+        cursor: pointer;
+        background-color: black;
+        position: relative;
+        z-index: 2;
+        transition: all .3S ease;
+    }
+    .bar::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        position: absolute;
+        top: -10px;
+        transition: all .3S ease;
+    }
+    .bar::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        position: absolute;
+        top: 10px;
+        transition: all .3S ease;
+    }
+    .check:checked~.bar{
+        transform: rotate(45deg);
+        position: fixed;
+        right: 1rem;
+        top: 3rem;
+    }
+    .check:checked~.bar:hover{
+        transform: rotate(225deg);
+
+    }
+    .check:checked~.bar::after,.check:checked~.bar::before{
+        transform: rotate(90deg);
+        top: 0;
+    }
+
+
+    .overlay{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        right: 0;
+        opacity: .6;
+        background-color: var(--Almost-Black);
+        transform: translateX(300%);
+        transition: all .3s ease;
+    }
+    .check:checked~.overlay{
+        transform: translateX(0%);
+    }
+    nav{
+       /* display: none; */
+       transform: translateX(300%);
+       position: fixed;
+       top: 0;
+       right: 0;
+
+    }
+    .check:checked~nav{ 
+        display: block;
+        transform: translateX(0%);
+        transition: all .3s ease;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+ 
+        display: flex;
+        flex-flow: column;
+        align-items: start;
+        justify-content: center;
+ 
+        background-color: var(--Almost-White);
+        height: 100vh;
+        width: 50vw;
+        padding-inline: 2rem;
+    }
+
+    .end__btn{
+        margin: 0;
+    }
+
+
+    nav{
+        gap: 2rem;
+    }
+
+    [type="checkbox"]:not(.check):checked~.dropdown{
+        position: static;
+        opacity: 1;
+        display: flex;
+        background-color: aliceblue;
+        transform: translateY(0px);
+        pointer-events: all;
+    }
+
+
+    .dropdown{
+        transform: translateY(0px);
+        position: static;
+        pointer-events: none;
+        opacity: 1;
+        width: max-content; 
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: none;
+    
+    
+    
+        padding-inline: 1.5rem;
+        padding-block: 1rem;
+        display: none;
+        flex-flow: column;
+        align-items: start;
+        gap: .8rem;
+    
+        transition: all .3s ease;
+    }
+    .btns{
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .btns>.header__btns:last-child{
+        width: 100%;
+        text-align: center;
+    }
+    
+}
+
+   
